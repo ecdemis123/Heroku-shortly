@@ -1,0 +1,16 @@
+<div id='signin'>
+  <h1>signin</h1>
+  <form name="signinForm" ng-submit='signin()'>
+    <input type='text' placeholder="username" ng-model='user.username' name="input" ng-required='true'>
+    <input type="password" placeholder='password' ng-model='user.password' name="password" ng-required='true'>
+    <button>signin</button>
+  </form>
+  <div class="message">
+    <span ng-if='hasError === true'>{{ error }} </span>
+    <span ng-show="signinForm.input.$error.required">
+      Enter in a username!</span>
+    <span ng-show="signinForm.password.$error.required">
+      Enter in a password!</span>
+  </div>
+  <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
+</div>

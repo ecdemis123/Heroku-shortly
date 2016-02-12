@@ -1,0 +1,15 @@
+<div id='container'>
+  <div class='creator'>
+    <form name='shortener' ng-submit="addLink(); link = ''">
+      <input class='text' placeholder="enter a link" type='url' name='input' ng-model='link.url' ng-required='true'>
+      <input type='submit' value='Shorten' ng-disabled="shortener.$invalid" style="margin: 0 auto">
+    </form>
+    <img ng-if='loading' src='../assets/spiffygif_46x46.gif'>
+    <div class='message' role='alert'>
+      <span class="error" ng-show="shortener.input.$error.required">
+        Enter in a URL! </span>
+      <span class="error" ng-show="shortener.input.$error.url">
+        Not valid URL!</span>
+    </div>
+  </div>
+</div>
