@@ -5,7 +5,7 @@ angular.module('shortly', [
   'shortly.auth',
   'ngRoute'
 ])
-.config(function($routeProvider, $httpProvider) {
+.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signin', {
       templateUrl: 'app/auth/signin.html',
@@ -31,14 +31,14 @@ angular.module('shortly', [
     })
     .otherwise({
       redirectTo: '/links'
-    })
+    });
     // Your code here
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
-})
-.factory('AttachTokens', function ($window) {
+}])
+.factory('AttachTokens', ['$window', function ($window) {
   // this is an $httpInterceptor
   // its job is to stop all out going request
   // then look in local storage and find the user's token
@@ -54,8 +54,8 @@ angular.module('shortly', [
     }
   };
   return attach;
-})
-.run(function ($rootScope, $location, Auth) {
+}])
+.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
   // here inside the run phase of angular, our services and controllers
   // have just been registered and our app is ready
   // however, we want to make sure the user is authorized
@@ -63,9 +63,9 @@ angular.module('shortly', [
   // when it does change routes, we then look for the token in localstorage
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
-  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+  $rootScope.$on('$routeChangeStart',['evt', 'next', 'current', function (evt, next, current) {
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/signin');
     }
-  });
-});
+  }]);
+}]);
