@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "karma start --browsers PhantomJS"
+    "test": "karma start --browsers PhantomJS",
+    "postinstall": "npm install bower -g && bower install",
+    "start": "node server/server.js"
   },
   "author": "",
   "license": "ISC",
