@@ -6,13 +6,13 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: ['client/**/*.js'],
-        dest: 'dist/built.js',
+        dest: 'client/dist/built.js',
       }
     },
     uglify: {
        my_target: {
          files: {
-           'dest/output.min.js': ['dist/built.js']
+           'client/dest/output.min.js': ['client/dist/built.js']
          }
        }
      },
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
      jshint: {
       beforeconcat: ['client/**/*.js'],
-      afterconcat: ['dist/built.js']
+      afterconcat: ['client/dist/built.js']
     }
 
   });
@@ -41,6 +41,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'uglify', 'jshint']);
+  grunt.registerTask('default', ['concat', 'uglify']);
 
 };
