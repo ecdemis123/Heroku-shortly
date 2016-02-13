@@ -1,5 +1,5 @@
-  var express     = require('express'),
-      mongoose    = require('mongoose');
+  var express     = require('express');
+  var mongoose    = require('mongoose');
   var config = require('./config/config.js');
 
 var app = express();
