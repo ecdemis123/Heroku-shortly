@@ -1,11 +1,13 @@
   var express     = require('express');
   var mongoose    = require('mongoose');
-  var config = require('./config/config.js');
+  var userInfo = require('./config/config.js');
+  console.log(require('./config/config.js'))
+  console.log(require('./config/middleware.js'))
 
 var app = express();
 
 
-mongoose.connect('mongodb://'+config.user+':'+config.password+'@ds059375.mongolab.com:59375/shortly'); // connect to mongo database named shortly
+mongoose.connect('mongodb://'+userInfo.user+':'+userInfo.password+'@ds059375.mongolab.com:59375/shortly'); // connect to mongo database named shortly
 
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
