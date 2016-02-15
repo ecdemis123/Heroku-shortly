@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "karma start --browsers PhantomJS",
-    "postinstall": "npm install",
+    "postinstall": "npm install bower -g && bower install",
     "start": "node index.js"
   },
   "author": "",
