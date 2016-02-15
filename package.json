@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "karma start --browsers PhantomJS",
+    "postinstall": "npm install",
     "start": "node index.js"
   },
   "author": "",
