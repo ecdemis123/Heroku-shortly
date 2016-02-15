@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "karma start --browsers PhantomJS"
+    "test": "karma start --browsers PhantomJS",
+    "postinstall": "npm install bower -g && bower install",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +14,10 @@
     "browser-sync": "^1.5.7",
     "clone-stats": "0.0.1",
     "expect.js": "^0.3.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.12.0",
+    "grunt-contrib-uglify": "^0.11.1",
     "gulp": "^3.8.5",
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.6.3",

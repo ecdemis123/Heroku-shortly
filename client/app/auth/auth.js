@@ -3,7 +3,7 @@
 // in our signup/signin forms using the injected Auth service
 angular.module('shortly.auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth) {
+.controller('AuthController',['$scope', '$window', '$state', 'Auth', function ($scope, $window, $state, Auth) {
   $scope.user = {};
 
   $scope.error = '';
@@ -13,17 +13,17 @@ angular.module('shortly.auth', [])
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
+        $state.go('links');
       })
       .catch(function (error) {
         $scope.hasError = true;
         if (error) {
           console.log(error);
-          $scope.error = error.data.error.toString()
+          $scope.error = error.data.error.toString();
           if (error.data.error.toString() === 'No user') {
             $scope.error = 'Wrong password';
           }
-          setTimeout(function(){ $scope.hasError = false}, 2000);
+          setTimeout(function(){ $scope.hasError = false; }, 2000);
         }
       });
   };
@@ -33,21 +33,21 @@ angular.module('shortly.auth', [])
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
+        $state.go('links');
       })
       .catch(function (error) {
         $scope.hasError = true;
         console.error(error);
         if(error) {
-          $scope.error = 'Username already exists. Pick another one!'
+          $scope.error = 'Username already exists. Pick another one!';
         }
-        setTimeout(function(){ $scope.hasError = false}, 2000);
+        setTimeout(function(){ $scope.hasError = false; }, 2000);
       });
   };
 
   $scope.signOut = function() {
     Auth.signout();
-  }
+  };
 
   $scope.isAuth = function() {
     var result = false;
@@ -55,6 +55,6 @@ angular.module('shortly.auth', [])
       result = true;
     }
     return result;
-  }
+  };
 
-});
+}]);
